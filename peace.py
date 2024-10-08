@@ -40,5 +40,4 @@ def play_game():
     """Main function to run the game."""
     # Your code here
 
-# Call the main function to start the game
 play_game()
