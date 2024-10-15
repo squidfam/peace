@@ -35,17 +35,15 @@ def play_round(player1_hand, player2_hand):
 def peace(player1_hand, player2_hand):
     temp_deck = []
 
-    while len(player1_hand) > 2 and len(player2_hand)> 2:
+    while len(player1_hand) > 3 and len(player2_hand)> 3:
 
         temp_deck.extend(player1_hand[:3])
         temp_deck.extend(player2_hand[:3])
-        del player1_hand[:2]
-        del player2_hand[:2]
-        print(len(player1_hand))
+        del player1_hand[:3]
+        del player2_hand[:3]
         peace_result = card_comparison(player1_hand[0],player2_hand[0])
         temp_deck.append(player1_hand.pop(0))
         temp_deck.append(player2_hand.pop(0))
-        print(len(player1_hand))
 
         if peace_result == 1:
             player1_hand.extend(temp_deck)
@@ -60,10 +58,8 @@ def peace(player1_hand, player2_hand):
         del player1_hand[:-1]
         del player2_hand[:-1]
         peace_result = card_comparison(player1_hand[0],player2_hand[0])
-        print(len(player1_hand))
         temp_deck.append(player1_hand.pop(0))
         temp_deck.append(player2_hand.pop(0))
-        print(len(player1_hand))
 
 
         if peace_result == 1:
@@ -82,17 +78,12 @@ def peace(player1_hand, player2_hand):
 
         
 def play_game(deck1,deck2):
-    #n = 0    
     while len(deck1) > 0 and len(deck2) > 0 and deck1 != "Player 1 wins!" and deck1 != "Player 2 wins!" and deck1 != "It's a tie!":
         deck1,deck2 = play_round(deck1,deck2)
-        #random.shuffle(deck1)
-        #random.shuffle(deck2)
-        #print("iteration",n)
-        #n += 1
-        print(len(deck1),len(deck2))
+        print(deck1,deck2)
     if deck1 == "it's a tie!" or deck1 == "Player 2 wins!" or deck1 == "Player 1 wins!":
         print(deck1)
-    elif deck1 == 0:
+    elif len(deck1) == 0:
         print("Player 2 wins!")
     else:
         print("Player 1 wins")
